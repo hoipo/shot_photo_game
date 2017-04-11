@@ -1,0 +1,49 @@
+#view {
+  width: 1024px;
+  height: 768px;
+  top: 0;
+  left: 0;
+  background: url(../ver-0.jpg) no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+html {
+  height: 100%;
+}
+body {
+  padding: 0;
+  margin: 0;
+  /*background-color: #ccc;*/
+  color: #ea8d1f;
+}
+* {
+  -webkit-text-size-adjust: none;
+  -webkit-user-select: none;
+  padding: 0;
+  margin: 0;
+  font-family: "微软雅黑";
+}
+ul,
+li {
+  list-style: none;
+}
+table,
+tr,
+td {
+  margin: 0;
+  padding: 0
+  /* background-color: rgba(0,0,0,0.6); */
+}
+.abs {
+  position: absolute;
+}
+.noEvent {
+  pointer-events: none;
+}
+#mainPage .tree-wrap .tree {
+  background-image: url('images/start_scene/tree.png');
+  width: 139.5px;
+  height: 195.5px;
+  background-size: 139.5px 195.5px;
+}
+/*# sourceMappingURL=style.css.map */

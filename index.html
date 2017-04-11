@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta content="telephone=no" name="format-detection">
+    <meta content="author" name="zhanghaibo_gz">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+
+    </style>
+    <title>火眼金睛辨真假</title>
+</head>
+
+<body>
+    <div id="view">
+        <div id="mainPage" class="abs">
+            <div class="abs tree-wrap">
+                <div class="abs tree" id="tree1"></div>
+                <div class="abs tree" id="tree2"></div>
+                <div class="abs tree" id="tree3"></div>
+            </div>
+            <div id="mainStartBtn" class="abs"></div>
+            <div id="mainRuleBtn" class="abs"></div>
+            <div id="mainRankBtn" class="abs"></div>
+        </div>
+      
+    </div>
+    <script src="../../html-common/v1/js/zepto_modify.js"></script>
+    <script src="../../html-common/v1/js/magazine.js"></script>
+    <script src="velocity.js"></script>
+    <script src="ele.js"></script>
+    <script>
+    var userInfo = {
+        userId: "",
+        sessionId:"",
+        userName: "",
+        userImage: "",
+    };
+    var appType = 1;
+    var appInfo = {
+        appVer: 0,
+        appMinVer: navigator.userAgent.toLowerCase().match(/iphone/i) ? 3 : navigator.userAgent.toLowerCase().match(/ipad/i) ? 5 : null,
+        apppDownLoadUrl: 'https://itunes.apple.com/cn/app/id575782252?mt=8',
+        appType: navigator.userAgent.toLowerCase().match(/iphone/i) ? 2 : navigator.userAgent.toLowerCase().match(/ipad/i) ? 1 : null,
+    }
+    appInfo.appVer = parseFloat(Magazine.parseAppMsg('app_version').split('.')[0]);
+    appInfo.isLastVersion = (appInfo.appVer <= appInfo.appMinVer);
+
+    userInfo.userId = Magazine.parseAppMsg("userid");
+    userInfo.sessionId = Magazine.parseAppMsg("common_session_id");
+    appInfo.appVer = parseFloat(Magazine.parseAppMsg("app_version").split(".")[0]);
+    Magazine.addEvent(4,function(data){
+        userInfo.userId = data.userid;
+        userInfo.sessionId = data.common_session_id;
+        userInfo.userName = data.username;
+        userInfo.userImage = data.userimage;
+        $("#loading").hide();
+    })
+
+    if (!window.location.href.match("machine")){
+        userInfo.sessionId = "D83C7A9741CDC4CB4FF2F0C7A619AD0D75D9F8E5EDE0D755E9143BF9674D15476CADDE14E79FC352";
+        userInfo.userId = "35071957";
+    }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
