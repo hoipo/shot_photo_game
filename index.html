@@ -12,31 +12,46 @@
     <style type="text/css">
 
     </style>
-    <title>火眼金睛辨真假</title>
+    <title>车车拍照biubiubiu</title>
 </head>
 
 <body>
     <div id="view">
         <div id="mainPage" class="abs">
             <div class="abs tree-wrap">
-                <div class="abs tree" id="tree1"></div>
-                <div class="abs tree" id="tree2"></div>
-                <div class="abs tree" id="tree3"></div>
+                <img src="images/start_scene/tree.png" class="abs tree" id="tree1"></img>
+                <img src="images/start_scene/tree.png" class="abs tree" id="tree2"></img>
+                <img src="images/start_scene/tree.png" class="abs tree" id="tree3"></img>
             </div>
-            <div id="mainStartBtn" class="abs"></div>
-            <div id="mainRuleBtn" class="abs"></div>
-            <div id="mainRankBtn" class="abs"></div>
+            <img src="images/start_scene/title.png" class="abs title" id="title" width="659" height="425">
+            <div class="abs car-wrap">
+                <img src="images/start_scene/car_1.png" width="480" height="272" class="abs car car1" id="car1">
+                <img src="images/start_scene/car_2.png" width="140" height="92" class="abs car car2" id="car2">
+                <img src="images/start_scene/car_3.png" width="155" height="105.5" class="abs car car3" id="car3">
+                <img src="images/start_scene/car_4.png" width="169" height="99.5" class="abs car car4" id="car4">
+                <img src="images/start_scene/car_5.png" width="175" height="116.5" class="abs car car5" id="car5">
+            </div>
+            <div class="abs plate" id="plate">
+                <div id="btn-start" class="abs button btn-start"></div>
+                <div id="btn-rule" class="abs button btn-rule btn-msg" data-pic="images/pop_up_info/rule.png"></div>
+                <div id="btn-rank" class="abs button btn-rank"></div>
+            </div>
         </div>
-      
+        <!-- 通用弹窗 -->
+        <div id="showDiv" class="button">
+            <div id="showImg">
+                <div class="abs close" id="close"></div>
+            </div>
+        </div>
     </div>
     <script src="../../html-common/v1/js/zepto_modify.js"></script>
     <script src="../../html-common/v1/js/magazine.js"></script>
     <script src="velocity.js"></script>
-    <script src="ele.js"></script>
+    <script src="main.js"></script>
     <script>
     var userInfo = {
         userId: "",
-        sessionId:"",
+        sessionId: "",
         userName: "",
         userImage: "",
     };
@@ -53,7 +68,7 @@
     userInfo.userId = Magazine.parseAppMsg("userid");
     userInfo.sessionId = Magazine.parseAppMsg("common_session_id");
     appInfo.appVer = parseFloat(Magazine.parseAppMsg("app_version").split(".")[0]);
-    Magazine.addEvent(4,function(data){
+    Magazine.addEvent(4, function(data) {
         userInfo.userId = data.userid;
         userInfo.sessionId = data.common_session_id;
         userInfo.userName = data.username;
@@ -61,7 +76,7 @@
         $("#loading").hide();
     })
 
-    if (!window.location.href.match("machine")){
+    if (!window.location.href.match("machine")) {
         userInfo.sessionId = "D83C7A9741CDC4CB4FF2F0C7A619AD0D75D9F8E5EDE0D755E9143BF9674D15476CADDE14E79FC352";
         userInfo.userId = "35071957";
     }
@@ -69,18 +84,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@
   height: 768px;
   top: 0;
   left: 0;
-  background: url(../ver-0.jpg) no-repeat;
+  background: url(http://192.168.22.135/PCauto/ipad/2017.04/hd-01.jpg) no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
 }
@@ -41,9 +41,219 @@ td {
   pointer-events: none;
 }
 #mainPage .tree-wrap .tree {
-  background-image: url('images/start_scene/tree.png');
-  width: 139.5px;
-  height: 195.5px;
-  background-size: 139.5px 195.5px;
+  opacity: 0;
+  -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s cubic-bezier(0.25, 0.3, 0.71, 1.44);
+          transition: opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.25, 0.3, 0.71, 1.44);
+}
+#mainPage .tree-wrap .tree.show {
+  opacity: 1;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+#mainPage .tree-wrap #tree1 {
+  width: 95px;
+  left: 96px;
+  top: 283px;
+}
+#mainPage .tree-wrap #tree2 {
+  width: 95px;
+  left: 745px;
+  top: 240px;
+}
+#mainPage .tree-wrap #tree3 {
+  width: 140px;
+  left: 860px;
+  top: 260px;
+}
+#mainPage .title {
+  left: 113px;
+  top: 45px;
+  opacity: 0;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.45s cubic-bezier(0.25, 0.3, 0.71, 1.44);
+          transition: opacity 0.3s, transform 0.45s cubic-bezier(0.25, 0.3, 0.71, 1.44);
+}
+#mainPage .title.show {
+  opacity: 1;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+#mainPage .car-wrap .car {
+  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.6s ease-out;
+          transition: opacity 0.3s linear, transform 0.6s ease-out;
+}
+#mainPage .car-wrap .car.show {
+  opacity: 1;
+  -webkit-transform: none;
+      -ms-transform: none;
+          transform: none;
+}
+#mainPage .car-wrap .car1 {
+  left: 447px;
+  top: 454px;
+  -webkit-transform: translate(-130px, -160px) scale(0);
+      -ms-transform: translate(-130px, -160px) scale(0);
+          transform: translate(-130px, -160px) scale(0);
+  -webkit-transform-origin: left center;
+      -ms-transform-origin: left center;
+          transform-origin: left center;
+}
+#mainPage .car-wrap .car2 {
+  left: 277px;
+  top: 40px;
+  opacity: 0;
+  -webkit-transform: translate(230px, 0);
+      -ms-transform: translate(230px, 0);
+          transform: translate(230px, 0);
+  -webkit-transition-delay: .8s;
+          transition-delay: .8s;
+}
+#mainPage .car-wrap .car3 {
+  left: 757px;
+  top: 67px;
+  opacity: 0;
+  -webkit-transform: translate(-150px, 150px) scale(0);
+      -ms-transform: translate(-150px, 150px) scale(0);
+          transform: translate(-150px, 150px) scale(0);
+  -webkit-transition-delay: .4s;
+          transition-delay: .4s;
+  -webkit-transform-origin: left bottom;
+      -ms-transform-origin: left bottom;
+          transform-origin: left bottom;
+}
+#mainPage .car-wrap .car4 {
+  left: 51px;
+  top: 389px;
+  opacity: 0;
+  -webkit-transform: translate(120px, 110px) scale(0);
+      -ms-transform: translate(120px, 110px) scale(0);
+          transform: translate(120px, 110px) scale(0);
+  -webkit-transition-delay: 1.2s;
+          transition-delay: 1.2s;
+  -webkit-transform-origin: right top;
+      -ms-transform-origin: right top;
+          transform-origin: right top;
+}
+#mainPage .car-wrap .car5 {
+  left: 62px;
+  top: 616px;
+  -webkit-transform: translate(160px, -200px) scale(0);
+      -ms-transform: translate(160px, -200px) scale(0);
+          transform: translate(160px, -200px) scale(0);
+  -webkit-transition-delay: 1.5s;
+          transition-delay: 1.5s;
+  -webkit-transform-origin: center top;
+      -ms-transform-origin: center top;
+          transform-origin: center top;
+}
+#mainPage .plate {
+  left: 203px;
+  top: 424px;
+  background-image: url(images/start_scene/button_plate.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 250px;
+  height: 288px;
+  background-size: 149px 288px;
+  opacity: 0;
+  -webkit-transition: opacity .4s linear;
+          transition: opacity .4s linear;
+}
+#mainPage .plate.show {
+  opacity: 1;
+}
+#mainPage .plate .btn-start {
+  left: 51px;
+  top: 20px;
+  background-image: url(images/start_scene/button_start.png);
+  width: 179px;
+  height: 61px;
+  background-size: 179px 61px;
+  -webkit-animation: btnStartAnimation .5s infinite alternate;
+          animation: btnStartAnimation .5s infinite alternate;
+}
+@-webkit-keyframes btnStartAnimation {
+  0% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  70%,
+  100% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+}
+@keyframes btnStartAnimation {
+  0% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  70%,
+  100% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+}
+#mainPage .plate .btn-rule {
+  left: 50px;
+  top: 90px;
+  width: 160px;
+  height: 63px;
+}
+#mainPage .plate .btn-rank {
+  left: 50px;
+  top: 157px;
+  width: 160px;
+  height: 63px;
+}
+#showDiv {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 0.8s;
+  -webkit-backface-visibility: hidden;
+}
+#showDiv.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#showImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transform: scale(0);
+  opacity: 0;
+  pointer-events: auto;
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.5, 1.1, 0.5, 1.1), opacity 0.3s;
+  -webkit-backface-visibility: hidden;
+}
+#showDiv.show #showImg {
+  -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.5, 1.1, 0.5, 1.1), opacity 0.6s;
+  -webkit-transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+#showDiv.show #showImg .close {
+  right: 0px;
+  top: 28px;
+  width: 90px;
+  height: 90px;
+  background-color: rgba(255, 0, 0, 0.5);
 }
 /*# sourceMappingURL=style.css.map */
