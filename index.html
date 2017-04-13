@@ -34,12 +34,46 @@
             <div class="abs plate" id="plate">
                 <div id="btn-start" class="abs button btn-start"></div>
                 <div id="btn-rule" class="abs button btn-rule btn-msg" data-pic="images/pop_up_info/rule.png"></div>
-                <div id="btn-rank" class="abs button btn-rank"></div>
+                <div id="btn-rank" class="abs btn-rank"></div>
+            </div>
+        </div>
+        <div class="abs game-wrap show">
+            <div class="abs how-to-play" id="how-to-play">
+                <div class="abs checkbox"></div>
+                <div class="abs i-knew-it"></div>
+            </div>
+        </div>
+        <!-- 排行榜 -->
+        <div id="rank" class="abs">
+            <div class="abs center rankBg">
+                <table id="rankTableHead" class="abs" border="0"></table>
+                <!-- 积分 -->
+                <div id="rankCoin" class="abs">
+                    <div class="abs rankCoinScroll">
+                        <table id="rankCoinTable" class="abs" border="0"></table>
+                    </div>
+                    <div id="myRankCoins" class="abs myRank">
+                        <p><b>我的排名</b></p>
+                        <table class="myRankTable" class="abs" border="0"></table>
+                    </div>
+                    <div id="vipTips" class="abs"></div>
+                </div>
+                <div id="rankClose" class="abs close"></div>
+            </div>
+        </div>
+        <div id="vipClub" class="abs">
+            <div class="abs vipClubBg">
+                <div class="abs center vipClubText">
+                    <img src="images/pop_up_info/club_text.png" width="761" height="1024">
+                </div>
+                <div class="abs upTips"><img src="images/pop_up_info/scroll_tips.png" width="25"></div>
+                <div id="vipClubClose" class="abs close"></div>
             </div>
         </div>
         <!-- 通用弹窗 -->
         <div id="showDiv" class="button">
             <div id="showImg">
+                 <div class="abs content"></div>
                 <div class="abs close" id="close"></div>
             </div>
         </div>
@@ -47,6 +81,7 @@
     <script src="../../html-common/v1/js/zepto_modify.js"></script>
     <script src="../../html-common/v1/js/magazine.js"></script>
     <script src="velocity.js"></script>
+    <script src="game.js"></script>
     <script src="main.js"></script>
     <script>
     var userInfo = {
@@ -77,8 +112,8 @@
     })
 
     if (!window.location.href.match("machine")) {
-        userInfo.sessionId = "D83C7A9741CDC4CB4FF2F0C7A619AD0D75D9F8E5EDE0D755E9143BF9674D15476CADDE14E79FC352";
-        userInfo.userId = "35071957";
+        userInfo.sessionId = "136031E83CD57F37B2C82361527C7519C0713A7EAC8ECC79E9143BF9674D15476CADDE14E79FC352";
+        userInfo.userId = "44201621";
     }
     </script>
 </body>
