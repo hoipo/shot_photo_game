@@ -1,486 +1,623 @@
-    #view {
-        width: 1024px;
-        height: 768px;
-        top: 0;
-        left: 0;
-        background: url(http://192.168.22.135/PCauto/ipad/2017.04/hd-01.jpg) no-repeat;
-        background-size: 100% 100%;
-        overflow: hidden;
-    }
-    
-    html {
-        height: 100%;
-    }
-    
-    body {
-        padding: 0;
-        margin: 0;
-        /*background-color: #ccc;*/
-        color: #18539c;
-    }
-    
-    * {
-        -webkit-text-size-adjust: none;
-        -webkit-user-select: none;
-        padding: 0;
-        margin: 0;
-        font-family: "微软雅黑";
-    }
-    
-    ul,
-    li {
-        list-style: none;
-    }
-    
-    table,
-    tr,
-    td {
-        margin: 0;
-        padding: 0;
-        /* background-color: rgba(0,0,0,0.6); */
-    }
-    
-    .abs,
-    .ab {
-        position: absolute;
-    }
-    
-    .noEvent {
-        pointer-events: none;
-    }
-    
-    #mainPage {
-        .tree-wrap {
-            .tree {
-                opacity: 0;
-                transform-origin: center bottom;
-                transform: scale(0);
-                transition: opacity .3s ease-out, transform .3s cubic-bezier(.25, .3, .71, 1.44);
-                &.show {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-            #tree1 {
-                width: 95px;
-                left: 96px;
-                top: 283px;
-            }
-            #tree2 {
-                width: 95px;
-                left: 745px;
-                top: 240px;
-            }
-            #tree3 {
-                width: 140px;
-                left: 860px;
-                top: 260px;
-            }
-        }
-        .title {
-            left: 113px;
-            top: 45px;
-            opacity: 0;
-            transform: scale(0);
-            transition: opacity .3s, transform .45s cubic-bezier(.25, .3, .71, 1.44);
-            &.show {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        .car-wrap {
-            .car {
-                transition: opacity .3s linear, transform .6s ease-out;
-                &.show {
-                    opacity: 1;
-                    transform: none;
-                }
-            }
-            .car1 {
-                left: 447px;
-                top: 454px;
-                transform: translate(-130px, -160px) scale(0);
-                transform-origin: left center;
-            }
-            .car2 {
-                left: 277px;
-                top: 40px;
-                opacity: 0;
-                transform: translate(230px, 0);
-                transition-delay: .8s;
-            }
-            .car3 {
-                left: 757px;
-                top: 67px;
-                opacity: 0;
-                transform: translate(-150px, 150px) scale(0);
-                transition-delay: .4s;
-                transform-origin: left bottom;
-            }
-            .car4 {
-                left: 51px;
-                top: 389px;
-                opacity: 0;
-                transform: translate(120px, 110px) scale(0);
-                transition-delay: 1.2s;
-                transform-origin: right top;
-            }
-            .car5 {
-                left: 62px;
-                top: 616px;
-                transform: translate(160px, -200px) scale(0);
-                transition-delay: 1.5s;
-                transform-origin: center top;
-            }
-        }
-        .plate {
-            left: 203px;
-            top: 424px;
-            background-image: url(images/start_scene/button_plate.png);
+     @font-face {
+         font-family: "cyjt";
+         src: url("FZY4JW.TTF");
+     }
+     
+     #view {
+         width: 1024px;
+         height: 768px;
+         top: 0;
+         left: 0;
+         background: url(http://192.168.22.135/PCauto/ipad/2017.04/hd-01.jpg) no-repeat;
+         background-size: 100% 100%;
+         overflow: hidden;
+     }
+     
+     html {
+         height: 100%;
+     }
+     
+     body {
+         padding: 0;
+         margin: 0;
+         /*background-color: #ccc;*/
+         color: #18539c;
+     }
+     
+     * {
+         -webkit-text-size-adjust: none;
+         -webkit-user-select: none;
+         padding: 0;
+         margin: 0;
+         font-family: "微软雅黑";
+     }
+     
+     ul,
+     li {
+         list-style: none;
+     }
+     
+     table,
+     tr,
+     td {
+         margin: 0;
+         padding: 0;
+         /* background-color: rgba(0,0,0,0.6); */
+     }
+     
+     .abs,
+     .ab {
+         position: absolute;
+     }
+     
+     .noEvent {
+         pointer-events: none;
+     }
+     
+     #mainPage {
+         .tree-wrap {
+             .tree {
+                 opacity: 0;
+                 transform-origin: center bottom;
+                 transform: scale(0);
+                 transition: opacity .3s ease-out, transform .3s cubic-bezier(.25, .3, .71, 1.44);
+                 &.show {
+                     opacity: 1;
+                     transform: scale(1);
+                 }
+             }
+             #tree1 {
+                 width: 95px;
+                 left: 96px;
+                 top: 283px;
+             }
+             #tree2 {
+                 width: 95px;
+                 left: 745px;
+                 top: 240px;
+             }
+             #tree3 {
+                 width: 140px;
+                 left: 860px;
+                 top: 260px;
+             }
+         }
+         .title {
+             left: 113px;
+             top: 45px;
+             opacity: 0;
+             transform: scale(0);
+             transition: opacity .3s, transform .45s cubic-bezier(.25, .3, .71, 1.44);
+             &.show {
+                 opacity: 1;
+                 transform: scale(1);
+             }
+         }
+         .car-wrap {
+             .car {
+                 transition: opacity .3s linear, transform .6s ease-out;
+                 &.show {
+                     opacity: 1;
+                     transform: none;
+                 }
+             }
+             .car1 {
+                 left: 447px;
+                 top: 454px;
+                 transform: translate(-130px, -160px) scale(0);
+                 transform-origin: left center;
+             }
+             .car2 {
+                 left: 277px;
+                 top: 40px;
+                 opacity: 0;
+                 transform: translate(230px, 0);
+                 transition-delay: .8s;
+             }
+             .car3 {
+                 left: 757px;
+                 top: 67px;
+                 opacity: 0;
+                 transform: translate(-150px, 150px) scale(0);
+                 transition-delay: .4s;
+                 transform-origin: left bottom;
+             }
+             .car4 {
+                 left: 51px;
+                 top: 389px;
+                 opacity: 0;
+                 transform: translate(120px, 110px) scale(0);
+                 transition-delay: 1.2s;
+                 transform-origin: right top;
+             }
+             .car5 {
+                 left: 62px;
+                 top: 616px;
+                 transform: translate(160px, -200px) scale(0);
+                 transition-delay: 1.5s;
+                 transform-origin: center top;
+             }
+         }
+         .plate {
+             left: 203px;
+             top: 424px;
+             background-image: url(images/start_scene/button_plate.png);
+             background-repeat: no-repeat;
+             background-position: center;
+             width: 250px;
+             height: 288px;
+             background-size: 149px 288px;
+             opacity: 0;
+             transition: opacity .4s linear;
+             &.show {
+                 opacity: 1;
+             }
+             .btn-start {
+                 left: 51px;
+                 top: 20px;
+                 background-image: url(images/start_scene/button_start.png);
+                 width: 179px;
+                 height: 61px;
+                 background-size: 179px 61px;
+                 animation: btnStartAnimation .5s infinite alternate;
+                 @keyframes btnStartAnimation {
+                     0% {
+                         transform: rotate(4deg);
+                     }
+                     70%,
+                     100% {
+                         transform: rotate(-4deg);
+                     }
+                 }
+             }
+             .btn-rule {
+                 left: 50px;
+                 top: 90px;
+                 width: 160px;
+                 height: 63px;
+             }
+             .btn-rank {
+                 left: 50px;
+                 top: 157px;
+                 width: 160px;
+                 height: 63px;
+             }
+         }
+     }
+     /*------------------------rank----------------------------*/
+     
+     #rank {
+         width: 100%;
+         height: 100%;
+         pointer-events: none;
+         background-color: rgba(0, 0, 0, 0.85);
+         opacity: 0;
+         -webkit-transition: opacity 0.5s;
+         &.show {
+             opacity: 1;
+             pointer-events: auto;
+             z-index: 10;
+         }
+     }
+     
+     .rankBg {
+         background: url(images/pop_up_info/rank_bg.png) no-repeat;
+         background-size: 527px 677px;
+         width: 527px;
+         height: 677px;
+         left: 0;
+         right: 0;
+         top: 0;
+         bottom: 0;
+         margin: auto;
+     }
+     
+     #rankTableHead {
+         width: 470px;
+         height: 32px;
+         top: 115px;
+         left: 0;
+         right: 0;
+         margin: auto;
+     }
+     
+     #rankTableHead>tr {
+         display: block;
+         border-bottom: 1px solid rgba(174, 131, 78, 0.8);
+     }
+     
+     #rankTableHead>tr td {
+         width: 156px;
+         text-align: center;
+         font-size: 15px;
+     }
+     
+     #rankCoin {
+         top: 142px;
+         left: 0;
+         right: 0;
+         margin: auto;
+         width: 470px;
+         height: 500px;
+         /* overflow: scroll; */
+         -webkit-overflow-scrolling: touch;
+         display: none;
+         font-size: 15px;
+     }
+     
+     .rankCoinScroll {
+         left: 0;
+         right: 0;
+         margin: auto;
+         width: 470px;
+         height: 362px;
+         overflow: scroll;
+         -webkit-overflow-scrolling: touch;
+         font-size: 15px;
+     }
+     
+     #rankCoinTable {
+         top: 0;
+         left: 0;
+         width: 100%;
+     }
+     
+     #rankClose,
+     #vipClubClose {
+         background-color: rgba(255, 0, 0, 0.5);
+         width: 80px;
+         height: 80px;
+         right: 6px;
+         top: 37px;
+     }
+     
+     #rankCoinTable>tr {
+         border-bottom: 1px solid rgba(174, 131, 78, 0.8);
+         height: 35px;
+         display: block;
+     }
+     
+     #rankCoinTable>tr td,
+     .myRankTable>tr td {
+         width: 156px;
+         height: 32px;
+         text-align: center;
+         font-size: 15px;
+     }
+     
+     #rankCoinTable span,
+     .myRankTable span {
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         overflow: hidden;
+         display: block;
+         width: 156px;
+     }
+     
+     .myRank {
+         width: 470px;
+         height: 135px;
+         bottom: 0;
+     }
+     
+     .myRank>p {
+         text-align: center;
+         font-size: 15px;
+         width: 100%;
+         height: 35px;
+         line-height: 35px;
+     }
+     
+     .myRank>.myRankTable {
+         text-align: center;
+         font-size: 15px;
+         width: 470px;
+         height: 35px;
+         left: 0;
+         right: 0;
+         margin: auto;
+         background-color: #99cef2;
+         border-bottom: 1px solid rgba(174, 131, 78, 0.8);
+         border-top: 1px solid rgba(174, 131, 78, 0.8);
+     }
+     
+     #vipTips {
+         background: url(images/pop_up_info/button_club.png) no-repeat;
+         background-size: 165px 42px;
+         width: 165px;
+         height: 42px;
+         bottom: 5px;
+         left: 0;
+         right: 0;
+         margin: auto;
+     }
+     /*------------------------vipClub----------------------------*/
+     
+     #vipClub {
+         z-index: 11;
+         width: 100%;
+         height: 100%;
+         pointer-events: none;
+         background-color: rgba(0, 0, 0, 0.85);
+         opacity: 0;
+         -webkit-transition: opacity 0.5s;
+     }
+     
+     #vipClub.show {
+         opacity: 1;
+         pointer-events: auto;
+     }
+     
+     .vipClubBg {
+         background: url(images/pop_up_info/club_bg.png) no-repeat;
+         background-size: 870px 678px;
+         width: 870px;
+         height: 678px;
+         left: 0;
+         right: 0;
+         top: 0;
+         bottom: 0;
+         margin: auto;
+     }
+     
+     .vipClubText {
+         left: 51px;
+         top: 98px;
+         width: 770px;
+         height: 540px;
+         overflow-y: scroll;
+         -webkit-overflow-scrolling: touch;
+     }
+     
+     .upTips {
+         bottom: 20px;
+         right: 20px;
+         -webkit-animation: upTips 0.5s infinite linear alternate;
+     }
+     
+     @-webkit-keyframes upTips {
+         0% {
+             -webkit-transform: translate(0, 0);
+         }
+         100% {
+             -webkit-transform: translate(0, -10px);
+         }
+     }
+     
+     #showDiv {
+         width: 100%;
+         height: 100%;
+         position: absolute;
+         background: rgba(0, 0, 0, 0.8);
+         opacity: 0;
+         pointer-events: none;
+         transition: opacity 0.8s;
+         backface-visibility: hidden;
+         &.show {
+             opacity: 1;
+             pointer-events: auto;
+         }
+     }
+     
+     #showImg {
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         margin: auto;
+         transform: scale(0);
+         opacity: 0;
+         pointer-events: auto;
+         transform-origin: center bottom;
+         transition: transform 0.3s cubic-bezier(.5, 1.1, .5, 1.1), opacity 0.3s;
+         backface-visibility: hidden;
+     }
+     
+     #showDiv.show #showImg {
+         transition: transform 0.6s cubic-bezier(.5, 1.1, .5, 1.1), opacity 0.6s;
+         transform: scale(1);
+         opacity: 1;
+         pointer-events: auto;
+         .content {
+             width: 100%;
+             height: 100%;
+             #appStoreBtn {
+                 width: 187px;
+                 height: 70px;
+                 bottom: 40px;
+                 top: 223px;
+                 right: 0;
+                 left: 0;
+                 margin: auto;
+             }
+         }
+         .close {
+             right: 10px;
+             top: 28px;
+             width: 130px;
+             height: 90px;
+             background-color: rgba(255, 0, 0, .5)
+         }
+     }
+     
+     .game-wrap {
+         width: 1024px;
+         height: 768px;
+         background-size: 1024px 768px;
+         background-image: url(images/game_scene/bg.jpg);
+         // background-image: url(http://192.168.22.135/PCauto/ipad/2017.04/hd-016.jpg);
+         opacity: 0;
+         transform: scale(1.5);
+         transition: transform .4s ease-out, opacity .3s linear;
+         pointer-events: none;
+         &.show {
+             opacity: 1;
+             transform: scale(1);
+             pointer-events: auto;
+         }
+         .title {
+             left: 784px;
+             top: 20px;
+             background-image: url(images/game_scene/title.png);
+             width: 205px;
+             height: 175px;
+             background-size: 205px 175px;
+         }
+         .how-to-play {
+             background-image: url(images/game_scene/tips.jpg);
+             width: 1024px;
+             height: 768px;
+             background-size: 1024px 768px;
+             transition: opacity 0s;
+             &.hide {
+                 opacity: 0;
+                 pointer-events: none;
+                 transition: opacity .3s;
+             }
+             .checkbox {
+                 left: 452px;
+                 top: 607px;
+                 background-image: url(images/game_scene/tips_tick.png);
+                 background-repeat: no-repeat;
+                 background-position: center;
+                 width: 60px;
+                 height: 53px;
+                 background-size: 25px 19px;
+                 opacity: 0;
+                 &.checked {
+                     opacity: 1;
+                 }
+             }
+             .i-knew-it {
+                 background-color: rgba(255, 0, 0, 0.5);
+                 left: 410px;
+                 top: 661px;
+                 width: 210px;
+                 height: 70px;
+             }
+         }
+         .count-down {
+             top: 248px;
+             left: 0;
+             right: 0;
+             margin: 0 auto;
+             background-image: url(images/game_scene/count_down.png);
+             width: 121px;
+             height: 161px;
+             background-size: 363px 161px;
+             background-position: -242px 0;
+             opacity: 1;
+             &.show {
+                 animation: conutDownAniamtion 3s step-start forwards;
+             }
+             @keyframes conutDownAniamtion {
+                 0%,
+                 33% {
+                     opacity: 1;
+                     background-position: -242px 0px;
+                 }
+                 66% {
+                     opacity: 1;
+                     background-position: -121px 0px;
+                 }
+                 99% {
+                     opacity: 1;
+                     background-position: 0px 0px;
+                 }
+                 100% {
+                     opacity: 0;
+                     background-position: 0px 0px;
+                 }
+             }
+         }
+         .cursor {
+             pointer-events: none;
+             top: 281px;
+             left: 0;
+             right: 0;
+             margin: 0 auto;
+             background-image: url(images/game_scene/cursor.png);
+             width: 61px;
+             height: 61px;
+             background-size: 61px 61px;
+         }
+         .screenshot {
+             display: none;
+             position: absolute;
+             left: 211px;
+             top: 90px;
+             width: 603px;
+             height: 450px;
+             li {
+                 position: absolute;
+                 background-image: url(images/game_scene/photo_background.jpg);
+                 width: 603px;
+                 height: 450px;
+                 background-size: 603px 450px;
+                 span {
+                     display: none;
+                     position: absolute;
+                     width: 100%;
+                     height: 100%;
+                     background-color: rgba(255, 255, 255, 0.95);
+                     z-index: 1;
+                     transition: opacity .2s;
+                     &.fade-out {
+                         opacity: 0;
+                     }
+                 }
+             }
+         }
+         .gameEnd {
+             .scoreNum {
+                 position: absolute;
+                 text-align: center;
+                 width: 100%;
+                 top: 562px;
+                 margin: 0 auto;
+                 color: #f00;
+                 font-family: 'cyjt';
+                 font-size: 34px;
+                 text-shadow: 2px 0px 0px #fff, -2px 0px 0px #fff, 0px 2px 0px #fff, 0px -2px 0px #fff;
+             }
+             .txt {
+                 line-height: 28px;
+                 top: 608px;
+                 width: 100%;
+                 position: absolute;
+                 text-align: center;
+                 color: #fff;
+                 font-size: 16px;
+             }
+             .shareBtn {
+                 left: 330px;
+                 top: 669px;
+                 background-image: url(images/game_scene/button_share.png);
+                 width: 167px;
+                 height: 49px;
+                 background-size: 167px 49px;
+             }
+             .againBtn {
+                 left: 525px;
+                 top: 669px;
+                 background-image: url(images/game_scene/button_again.png);
+                 width: 167px;
+                 height: 49px;
+                 background-size: 167px 49px;
+             }
+         }
+         .hero{
+            width: 191px;
+            height: 113px;
+            position: absolute;
+            z-index: 20;
+            top: 0;
+            left: 0;
+            display: block;
+            // margin-left: -77px;
+            // margin-top: -102.5px;
             background-repeat: no-repeat;
             background-position: center;
-            width: 250px;
-            height: 288px;
-            background-size: 149px 288px;
-            opacity: 0;
-            transition: opacity .4s linear;
-            &.show {
-                opacity: 1;
-            }
-            .btn-start {
-                left: 51px;
-                top: 20px;
-                background-image: url(images/start_scene/button_start.png);
-                width: 179px;
-                height: 61px;
-                background-size: 179px 61px;
-                animation: btnStartAnimation .5s infinite alternate;
-                @keyframes btnStartAnimation {
-                    0% {
-                        transform: rotate(4deg);
-                    }
-                    70%,
-                    100% {
-                        transform: rotate(-4deg);
-                    }
-                }
-            }
-            .btn-rule {
-                left: 50px;
-                top: 90px;
-                width: 160px;
-                height: 63px;
-            }
-            .btn-rank {
-                left: 50px;
-                top: 157px;
-                width: 160px;
-                height: 63px;
-            }
-        }
-    }
-    /*------------------------rank----------------------------*/
-    
-    #rank {
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        background-color: rgba(0, 0, 0, 0.85);
-        opacity: 0;
-        -webkit-transition: opacity 0.5s;
-        &.show {
-            opacity: 1;
-            pointer-events: auto;
-            z-index: 10;
-        }
-    }
-    
-    .rankBg {
-        background: url(images/pop_up_info/rank_bg.png) no-repeat;
-        background-size: 527px 677px;
-        width: 527px;
-        height: 677px;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-    }
-    
-    #rankTableHead {
-        width: 470px;
-        height: 32px;
-        top: 115px;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-    
-    #rankTableHead>tr {
-        display: block;
-        border-bottom: 1px solid rgba(174, 131, 78, 0.8);
-    }
-    
-    #rankTableHead>tr td {
-        width: 156px;
-        text-align: center;
-        font-size: 15px;
-    }
-    
-    #rankCoin {
-        top: 142px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 470px;
-        height: 500px;
-        /* overflow: scroll; */
-        -webkit-overflow-scrolling: touch;
-        display: none;
-        font-size: 15px;
-    }
-    
-    .rankCoinScroll {
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 470px;
-        height: 362px;
-        overflow: scroll;
-        -webkit-overflow-scrolling: touch;
-        font-size: 15px;
-    }
-    
-    #rankCoinTable {
-        top: 0;
-        left: 0;
-        width: 100%;
-    }
-    
-    #rankClose,
-    #vipClubClose {
-        background-color: rgba(255, 0, 0, 0.5);
-        width: 80px;
-        height: 80px;
-        right: 6px;
-        top: 37px;
-    }
-    
-    #rankCoinTable>tr {
-        border-bottom: 1px solid rgba(174, 131, 78, 0.8);
-        height: 35px;
-        display: block;
-    }
-    
-    #rankCoinTable>tr td,
-    .myRankTable>tr td {
-        width: 156px;
-        height: 32px;
-        text-align: center;
-        font-size: 15px;
-    }
-    
-    #rankCoinTable span,
-    .myRankTable span {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        display: block;
-        width: 156px;
-    }
-    
-    .myRank {
-        width: 470px;
-        height: 135px;
-        bottom: 0;
-    }
-    
-    .myRank>p {
-        text-align: center;
-        font-size: 15px;
-        width: 100%;
-        height: 35px;
-        line-height: 35px;
-    }
-    
-    .myRank>.myRankTable {
-        text-align: center;
-        font-size: 15px;
-        width: 470px;
-        height: 35px;
-        left: 0;
-        right: 0;
-        margin: auto;
-        background-color: #99cef2;
-        border-bottom: 1px solid rgba(174, 131, 78, 0.8);
-        border-top: 1px solid rgba(174, 131, 78, 0.8);
-    }
-    
-    #vipTips {
-        background: url(images/pop_up_info/button_club.png) no-repeat;
-        background-size: 165px 42px;
-        width: 165px;
-        height: 42px;
-        bottom: 5px;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-    /*------------------------vipClub----------------------------*/
-    
-    #vipClub {
-        z-index: 11;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        background-color: rgba(0, 0, 0, 0.85);
-        opacity: 0;
-        -webkit-transition: opacity 0.5s;
-    }
-    
-    #vipClub.show {
-        opacity: 1;
-        pointer-events: auto;
-    }
-    
-    .vipClubBg {
-        background: url(images/pop_up_info/club_bg.png) no-repeat;
-        background-size: 870px 678px;
-        width: 870px;
-        height: 678px;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-    }
-    
-    .vipClubText {
-        left: 51px;
-        top: 98px;
-        width: 770px;
-        height: 540px;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .upTips {
-        bottom: 20px;
-        right: 20px;
-        -webkit-animation: upTips 0.5s infinite linear alternate;
-    }
-    
-    @-webkit-keyframes upTips {
-        0% {
-            -webkit-transform: translate(0, 0);
-        }
-        100% {
-            -webkit-transform: translate(0, -10px);
-        }
-    }
-    
-    #showDiv {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.8);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.8s;
-        backface-visibility: hidden;
-        &.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-    }
-    
-    #showImg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        transform: scale(0);
-        opacity: 0;
-        pointer-events: auto;
-        transform-origin: center bottom;
-        transition: transform 0.3s cubic-bezier(.5, 1.1, .5, 1.1), opacity 0.3s;
-        backface-visibility: hidden;
-    }
-    
-    #showDiv.show #showImg {
-        transition: transform 0.6s cubic-bezier(.5, 1.1, .5, 1.1), opacity 0.6s;
-        transform: scale(1);
-        opacity: 1;
-        pointer-events: auto;
-        .content {
-            width: 100%;
-            height: 100%;
-            #appStoreBtn {
-                width: 187px;
-                height: 70px;
-                bottom: 40px;
-                top: 223px;
-                right: 0;
-                left: 0;
-                margin: auto;
-            }
-        }
-        .close {
-            right: 10px;
-            top: 28px;
-            width: 130px;
-            height: 90px;
-            background-color: rgba(255, 0, 0, .5)
-        }
-    }
-    
-    .game-wrap {
-        width: 1024px;
-        height: 768px;
-        background-size: 1024px 768px;
-        background-image: url(images/game_scene/bg.jpg);
-        opacity: 0;
-        transform: scale(1.5);
-        transition: transform .4s ease-out, opacity .3s linear;
-        pointer-events: none;
-        &.show {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
-        .how-to-play {
-            background-image: url(images/game_scene/tips.jpg);
-            width: 1024px;
-            height: 768px;
-            background-size: 1024px 768px;
-            transition: opacity 0s;
-            &.hide {
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity .3s;
-            }
-            .checkbox {
-                left: 452px;
-                top: 607px;
-                background-image: url(images/game_scene/tips_tick.png);
-                background-repeat: no-repeat;
-                background-position: center;
-                width: 60px;
-                height: 53px;
-                background-size: 25px 19px;
-                opacity: 0;
-                &.checked{
-                    opacity: 1;
-                }
-            }
-            .i-knew-it{
-    background-color: rgba(255, 0, 0, 0.5);
-    left: 410px;
-    top: 661px;
-    width: 210px;
-    height: 70px;
-            }
-        }
-    }
+         }
+     }
