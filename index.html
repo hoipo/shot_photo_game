@@ -12,7 +12,7 @@
     <style type="text/css">
 
     </style>
-    <title>车车拍照biubiubiu</title>
+    <title>捕捉童年汽车梦</title>
 </head>
 
 <body>
@@ -37,35 +37,40 @@
                 <div id="btn-rank" class="abs btn-rank"></div>
             </div>
         </div>
-        <div class="abs game-wrap show">
+        <div class="abs game-wrap">
             <!-- 标题 -->
             <div class="abs title"></div>
             <!-- 准心 -->
-            <div class="abs cursor"></div>
+            <div class="abs cursor" id="cursor"></div>
             <!-- 倒计时 -->
             <div id="count-down" class="abs count-down">
             </div>
+            <div class="screenshot">
+                <ul>
+                    <li><div class="carMask"><div class="sCar"></div></div><span></span></li>
+                    <li><div class="carMask"><div class="sCar"></div></div><span></span></li>
+                    <li><div class="carMask"><div class="sCar"></div></div><span></span></li>
+                </ul>
+            </div>
+            <span class='abs hero' id="hero"></span>
+            <div class="game-running">
+                <div class="txt">那些年，我们有过的汽车梦，你还记得多少？</div>
+                <div class="abs takePhotoBtn"></div>
+            </div>
+            <div class="gameEnd">
+                <div class="scoreNum"><span></span>，<span></span>分</div>
+                <div class="txt"></div>
+                <div class="abs shareBtn"></div>
+                <div class="abs againBtn"></div>
+                <div class="abs win-coins"><span></span></div>
+            </div>
+
+
+
             <div class="abs how-to-play" id="how-to-play">
                 <div class="abs checkbox"></div>
                 <div class="abs i-knew-it"></div>
             </div>
-            <div class="screenshot">
-                <ul>
-                    <li><span></span><div class="car"><div class="sBay"></div></div></li>
-                    <li><span></span><div class="car"><div class="sBay"></div></div></li>
-                    <li><span></span><div class="car"><div class="sBay"></div></div></li>
-                </ul>
-            </div>
-            <span id='abs hero' id="hero"></span>
-            <div class="gameEnd">
-                <div class="scoreNum">厉害了，<span>99.56</span>分</div>
-                <div class="txt">看过《霹雳游侠》都会惊叹智能汽车基塔，能跑能说还能杀坏人。<br>那时还不知道它的原型是庞蒂亚克火鸟！</div>
-                <div class="abs shareBtn"></div>
-                <div class="abs againBtn"></div>
-            </div>
-
-
-
         </div>
         <!-- 排行榜 -->
         <div id="rank" class="abs">
@@ -133,12 +138,12 @@
         userInfo.userImage = data.userimage;
         $("#loading").hide();
     })
-
     if (!window.location.href.match("machine")) {
         userInfo.sessionId = "136031E83CD57F37B2C82361527C7519C0713A7EAC8ECC79E9143BF9674D15476CADDE14E79FC352";
         userInfo.userId = "44201621";
     }
     </script>
+    <script src="http://192.168.21.42:8080/target/target-script-min.js#anonymous"></script>
 </body>
 
 </html>

@@ -1,3 +1,6 @@
+var apiUrl = "http://play10.pcauto.com.cn/auto170401/action/",
+    isEnd = 0,
+    todayCoins = 0;
 var vipRule = [{
     rank: [0, 99],
     icon: "6",
@@ -51,37 +54,85 @@ var vipRule = [{
     icon: 1,
     text: "至尊成员"
 }];
+
 $(document).ready(function() {
-        if (!window.location.href.match("machine")) {
-            $("body").addClass("debug");
-            setTimeout(function() {
-                Magazine.trigger(1);
-            }, 1000);
+    if (!window.location.href.match("machine")) {
+        $("body").addClass("debug");
+        setTimeout(function() {
+            Magazine.trigger(1);
+        }, 1000);
+    }
+    Magazine.trigger(6, function(data) {
+        if (data.isSuccess) {
+            
+            //提交分数
+            $.ajax({
+                type: "GET",
+                url: apiUrl + "addCoins.jsp",
+                data: {
+                    accountId: userInfo.userId,
+                    app: 1,
+                    common_session_id: userInfo.sessionId,
+                    id: game.id
+                },
+                dataType: "jsonp",
+                success: function(data) {
+                    if (data.code == 1) {
+                        showMsg('images/pop_up_info/get_coins_done.png', '<div id="get-coins-done-close" class="abs get-coins-done-close"></div>');
+                        alert('拿分成功啦')
+                    }
+                }
+            })
+            alert('分享成功')
         }
-        Magazine.addEvent(1, function() {
-            $(".tree").addClass('show');
+    })
+    Magazine.addEvent(1, function() {
+        $(".tree").addClass('show');
+        setTimeout(function() {
+            $("#title").addClass('show');
             setTimeout(function() {
-                $("#title").addClass('show');
+                $(".car").addClass('show');
                 setTimeout(function() {
-                    $(".car").addClass('show');
-                    setTimeout(function() {
-                        $("#plate").addClass('show');
-                    }, 1500);
-                }, 400);
-            }, 300);
-        });
-        game.init();
+                    $("#plate").addClass('show');
+                }, 1500);
+            }, 400);
+        }, 300);
     });
-    //事件绑定
+    game.init();
+});
+//事件绑定
 $(".btn-msg").tap(function(e) {
+    e.stopPropagation();
     showMsg(e.target.getAttribute('data-pic'));
 });
-$("#close").tap(function() {
+$("#close").tap(function(e) {
+    e.stopPropagation();
     $('#showDiv').removeClass("show").find(".content").html("");
 });
-$("#view").tap(function (e) {
+$(".shareBtn").tap(function(e) {
+    e.stopPropagation();
+    //提交分数
+    $.ajax({
+        type: "GET",
+        url: apiUrl + "submit.jsp",
+        data: {
+            accountId: userInfo.userId,
+            app: 1,
+            common_session_id: userInfo.sessionId,
+            score: game.score
+        },
+        dataType: "jsonp",
+        success: function(data) {
+            if (data.code == 1) {
+                console.log('提交分数成功');
+                game.id = data.id;
+            }
+        }
+    })
+    game.share();
+})
+$("#view").tap(function(e) {
     var id = e.target.id;
-    console.log(id)
     switch (id) {
         case 'rankClose':
             e.stopPropagation();
@@ -103,9 +154,9 @@ $("#view").tap(function (e) {
             e.stopPropagation();
             window.location.href = "https://itunes.apple.com/cn/app/id575782252?mt=8";
             break;
-        case 'btn-start':
+        case 'get-coins-done-close':
             e.stopPropagation();
-            $(".game-wrap").addClass('show');
+            $('#showDiv').removeClass("show").find(".content").html("");
             break;
         default:
             // statements_def
@@ -134,68 +185,68 @@ function showMsg(url) {
     _img.src = url;
 }
 
-function rank(){
+function rank() {
     appInfo.appVer = 3;
     appInfo.appMinVer = 2;
     if (!navigator.onLine) {
         showMsg('images/pop_up_info/offline_rank.png');
-    }else if (appInfo.appVer < appInfo.appMinVer) {
-        showMsg('images/pop_up_info/update_app.png','<div id="appStoreBtn" class="abs appStoreBtn"></div>');
-    }else if (!userInfo.userId) {
+    } else if (appInfo.appVer < appInfo.appMinVer) {
+        showMsg('images/pop_up_info/update_app.png', '<div id="appStoreBtn" class="abs appStoreBtn"></div>');
+    } else if (!userInfo.userId) {
         // alert("请登录");
         Magazine.callApp("login:");
         // location.href = 'login:';
     } else {
         $("#rank").addClass("show");
         // if (rankNum == 1) {
-            $("#rankCoinTable").html("loading...");
-            $("#rankTableHead").html("<tr><td>头衔</td><td>车友</td><td>积分</td></tr>");
-            $("#rankCoin").show();
-            $("#rankTest").hide();
-            // _getRankCoin();
-            (function(){
-                $.ajax({
-                    type: "GET",
-                    url: "https://coin.pchouse.com.cn/user/getCoinTop.do",
-                    data: {
-                        accountId: userInfo.userId,
-                        mag: "pcauto",
-                        pageNo: 1,
-                        pageSize: 50,
-                        common_session_id: userInfo.sessionId,
-                    },
-                    dataType: "jsonp",
-                    success: function(data){
-                        console.log(data);
-                        if (data.MyName){
-                            var list = "";
-                            for (var i = 0; i < data.list.length; i+=1) {
-                                list +="<tr><td class='honor'>"+data.list[i].rank+_getHonor(data.list[i].coins)+"</td><td><span>"+data.list[i].nickName+"</span></td><td>"+data.list[i].coins+"分</td></tr>";
-                            }
-                            if(data.list.length>10){
-                                $("#rankCoin>.upTips").show();
-                            }else{
-                                $("#rankCoin>.upTips").hide();
-                            }
-                            // data.myCoins = 150000;
-                            $("#rankCoinTable").html(list);
-                            $("#myRankCoins>.myRankTable").html("<tr><td class='honor'>"+data.myRank+_getHonor(data.myCoins)+"</td><td><span>"+data.MyName+"</span></td><td>"+data.myCoins+"分</td></tr>");
-                        }else{
-                            console.log("wrong!");
+        $("#rankCoinTable").html("loading...");
+        $("#rankTableHead").html("<tr><td>头衔</td><td>车友</td><td>积分</td></tr>");
+        $("#rankCoin").show();
+        $("#rankTest").hide();
+        // _getRankCoin();
+        (function() {
+            $.ajax({
+                type: "GET",
+                url: "https://coin.pchouse.com.cn/user/getCoinTop.do",
+                data: {
+                    accountId: userInfo.userId,
+                    mag: "pcauto",
+                    pageNo: 1,
+                    pageSize: 50,
+                    common_session_id: userInfo.sessionId,
+                },
+                dataType: "jsonp",
+                success: function(data) {
+                    console.log(data);
+                    if (data.MyName) {
+                        var list = "";
+                        for (var i = 0; i < data.list.length; i += 1) {
+                            list += "<tr><td class='honor'>" + data.list[i].rank + _getHonor(data.list[i].coins) + "</td><td><span>" + data.list[i].nickName + "</span></td><td>" + data.list[i].coins + "分</td></tr>";
                         }
-                    },
-                    error: function(xhr, type){
-                        showMsg('images/pop_up_info/offline_rank.png');
+                        if (data.list.length > 10) {
+                            $("#rankCoin>.upTips").show();
+                        } else {
+                            $("#rankCoin>.upTips").hide();
+                        }
+                        // data.myCoins = 150000;
+                        $("#rankCoinTable").html(list);
+                        $("#myRankCoins>.myRankTable").html("<tr><td class='honor'>" + data.myRank + _getHonor(data.myCoins) + "</td><td><span>" + data.MyName + "</span></td><td>" + data.myCoins + "分</td></tr>");
+                    } else {
+                        console.log("wrong!");
                     }
-                })
-            })()
+                },
+                error: function(xhr, type) {
+                    showMsg('images/pop_up_info/offline_rank.png');
+                }
+            })
+        })()
         // }
-        function _getHonor(a_num){
+        function _getHonor(a_num) {
             var img = "";
-            vipRule.map(function(item){
-                if (item.rank[0]<=a_num && item.rank[1] >=a_num) {
-                    img = item.icon ? "<img src='images/pop_up_info/g"+item.icon+".png'" + " width='22'>":"";
-                    img += " "+item.text;
+            vipRule.map(function(item) {
+                if (item.rank[0] <= a_num && item.rank[1] >= a_num) {
+                    img = item.icon ? "<img src='images/pop_up_info/g" + item.icon + ".png'" + " width='22'>" : "";
+                    img += " " + item.text;
                 }
             })
             return img;

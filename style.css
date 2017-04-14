@@ -292,7 +292,6 @@ td {
 }
 #rankClose,
 #vipClubClose {
-  background-color: rgba(255, 0, 0, 0.5);
   width: 80px;
   height: 80px;
   right: 6px;
@@ -447,7 +446,8 @@ td {
   width: 100%;
   height: 100%;
 }
-#showDiv.show #showImg .content #appStoreBtn {
+#showDiv.show #showImg .content #appStoreBtn,
+#showDiv.show #showImg .content .get-coins-done-close {
   width: 187px;
   height: 70px;
   bottom: 40px;
@@ -456,12 +456,14 @@ td {
   left: 0;
   margin: auto;
 }
+#showDiv.show #showImg .content .get-coins-done-close {
+  top: 186px;
+}
 #showDiv.show #showImg .close {
   right: 10px;
   top: 28px;
   width: 130px;
   height: 90px;
-  background-color: rgba(255, 0, 0, 0.5);
 }
 .game-wrap {
   width: 1024px;
@@ -490,6 +492,7 @@ td {
   width: 205px;
   height: 175px;
   background-size: 205px 175px;
+  z-index: 20;
 }
 .game-wrap .how-to-play {
   background-image: url(images/game_scene/tips.jpg);
@@ -520,7 +523,6 @@ td {
   opacity: 1;
 }
 .game-wrap .how-to-play .i-knew-it {
-  background-color: rgba(255, 0, 0, 0.5);
   left: 410px;
   top: 661px;
   width: 210px;
@@ -592,32 +594,72 @@ td {
   background-size: 61px 61px;
 }
 .game-wrap .screenshot {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
   position: absolute;
   left: 211px;
   top: 90px;
   width: 603px;
   height: 450px;
 }
+.game-wrap .screenshot.show {
+  opacity: 1;
+}
 .game-wrap .screenshot li {
   position: absolute;
   background-image: url(images/game_scene/photo_background.jpg);
-  width: 603px;
-  height: 450px;
-  background-size: 603px 450px;
+  width: 593px;
+  height: 441px;
+  background-size: 593px 441px;
+  border: 5px solid #fff;
 }
-.game-wrap .screenshot li span {
-  display: none;
+.game-wrap .screenshot li .carMask {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.95);
+  overflow: hidden;
   z-index: 1;
-  -webkit-transition: opacity .2s;
-          transition: opacity .2s;
+}
+.game-wrap .screenshot li .carMask .sCar {
+  width: 191px;
+  height: 113px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.game-wrap .screenshot li span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 8;
 }
 .game-wrap .screenshot li span.fade-out {
+  -webkit-transition: opacity .8s;
+          transition: opacity .8s;
   opacity: 0;
+}
+.game-wrap .game-running .txt {
+  line-height: 28px;
+  top: 578px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+.game-wrap .game-running .takePhotoBtn {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 634px;
+  background-image: url(images/game_scene/button_shot.png);
+  width: 96px;
+  height: 96px;
+  background-size: 96px 96px;
+}
+.game-wrap .gameEnd {
+  display: none;
 }
 .game-wrap .gameEnd .scoreNum {
   position: absolute;
@@ -655,6 +697,28 @@ td {
   height: 49px;
   background-size: 167px 49px;
 }
+.game-wrap .gameEnd .win-coins {
+  font-size: 32px;
+  text-align: center;
+  left: 640px;
+  top: 490px;
+  background-image: url(images/game_scene/win_coins.png);
+  width: 150px;
+  height: 106px;
+  background-size: 150px 106px;
+}
+.game-wrap .gameEnd .win-coins span {
+  height: 52px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-transform: rotate(16deg);
+      -ms-transform: rotate(16deg);
+          transform: rotate(16deg);
+}
 .game-wrap .hero {
   width: 191px;
   height: 113px;
@@ -665,5 +729,6 @@ td {
   display: block;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
 }
 /*# sourceMappingURL=style.css.map */
