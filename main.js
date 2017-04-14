@@ -62,30 +62,8 @@ $(document).ready(function() {
             Magazine.trigger(1);
         }, 1000);
     }
-    Magazine.trigger(6, function(data) {
-        if (data.isSuccess) {
             
-            //提交分数
-            $.ajax({
-                type: "GET",
-                url: apiUrl + "addCoins.jsp",
-                data: {
-                    accountId: userInfo.userId,
-                    app: 1,
-                    common_session_id: userInfo.sessionId,
-                    id: game.id
-                },
-                dataType: "jsonp",
-                success: function(data) {
-                    if (data.code == 1) {
-                        showMsg('images/pop_up_info/get_coins_done.png', '<div id="get-coins-done-close" class="abs get-coins-done-close"></div>');
-                        alert('拿分成功啦')
-                    }
-                }
-            })
-            alert('分享成功')
-        }
-    })
+            
     Magazine.addEvent(1, function() {
         $(".tree").addClass('show');
         setTimeout(function() {
@@ -119,13 +97,31 @@ $(".shareBtn").tap(function(e) {
             accountId: userInfo.userId,
             app: 1,
             common_session_id: userInfo.sessionId,
-            score: game.score
+            score: parseInt(game.score)
         },
         dataType: "jsonp",
         success: function(data) {
             if (data.code == 1) {
                 console.log('提交分数成功');
-                game.id = data.id;
+                //提交分数
+            $.ajax({
+                type: "GET",
+                url: apiUrl + "addCoins.jsp",
+                data: {
+                    accountId: userInfo.userId,
+                    app: 1,
+                    common_session_id: userInfo.sessionId,
+                    id: data.id
+                },
+                dataType: "jsonp",
+                success: function(data) {
+                    if (data.code == 1) {
+                        setTimeout(function () {
+                            showMsg('images/pop_up_info/get_coins_done.png', '<div id="get-coins-done-close" class="abs get-coins-done-close"></div>');
+                        }, 8000)
+                    }
+                }
+            })
             }
         }
     })

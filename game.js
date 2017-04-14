@@ -266,14 +266,16 @@ var game = {
              * 再来一次
              */
             //添加事件绑定
-            $(".againBtn").one("touchstart", function() {
+            $(".againBtn").one("touchstart", function(e) {
+                e.stopPropagation();
                 com.setCss3($screenshot.find('li'));
                 $screenshot.removeClass('show');
                 me.heroRun();
             })
         }
         //拍照
-        $('.takePhotoBtn').one("touchstart", function() {
+        $('.takePhotoBtn').one("touchstart", function(e) {
+            e.stopPropagation();
             gameEnd();
         })
     },
