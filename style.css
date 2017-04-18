@@ -185,29 +185,31 @@ td {
   width: 179px;
   height: 61px;
   background-size: 179px 61px;
-  -webkit-animation: btnStartAnimation .5s infinite alternate;
-          animation: btnStartAnimation .5s infinite alternate;
+  -webkit-animation: btnStartAnimation .8s infinite alternate;
+          animation: btnStartAnimation .8s infinite alternate;
 }
 @-webkit-keyframes btnStartAnimation {
-  0% {
-    -webkit-transform: rotate(4deg);
-            transform: rotate(4deg);
-  }
-  70%,
+  0%,
+  60%,
   100% {
-    -webkit-transform: rotate(-4deg);
-            transform: rotate(-4deg);
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  30% {
+    -webkit-transform: translate(-15px, 0);
+            transform: translate(-15px, 0);
   }
 }
 @keyframes btnStartAnimation {
-  0% {
-    -webkit-transform: rotate(4deg);
-            transform: rotate(4deg);
-  }
-  70%,
+  0%,
+  60%,
   100% {
-    -webkit-transform: rotate(-4deg);
-            transform: rotate(-4deg);
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  30% {
+    -webkit-transform: translate(-15px, 0);
+            transform: translate(-15px, 0);
   }
 }
 #mainPage .plate .btn-rule {
@@ -700,6 +702,7 @@ td {
   background-size: 167px 49px;
 }
 .game-wrap .gameEnd .win-coins {
+  display: none;
   font-size: 32px;
   text-align: center;
   left: 640px;

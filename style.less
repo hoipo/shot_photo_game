@@ -161,14 +161,13 @@
                  width: 179px;
                  height: 61px;
                  background-size: 179px 61px;
-                 animation: btnStartAnimation .5s infinite alternate;
+                 animation: btnStartAnimation .8s infinite alternate;
                  @keyframes btnStartAnimation {
-                     0% {
-                         transform: rotate(4deg);
+                     0%,60%,100% {
+                         transform: translate(0,0);
                      }
-                     70%,
-                     100% {
-                         transform: rotate(-4deg);
+                     30%{
+                         transform: translate(-15px,0);
                      }
                  }
              }
@@ -653,6 +652,7 @@
                  background-size: 167px 49px;
              }
              .win-coins {
+                display: none;
                  font-size: 32px;
                  text-align: center;
                  left: 640px;

@@ -25,8 +25,8 @@ var com = {
 var game = {
     hideTips: localStorage["gameTips201705"] ? true : false, //把是否显示游戏提示保存到本地存储
     gameWrapDom: $(".game-wrap"),
-    score:0,
-    id:0,
+    score: 0,
+    id: 0,
     init: function() {
         var me = this;
         //判断是否要显示游戏提示
@@ -41,6 +41,19 @@ var game = {
         }
         $('.i-knew-it,#btn-start').tap(function(e) {
             e.stopPropagation();
+            //提交分数
+            if (!navigator.onLine) {
+                showMsg('images/pop_up_info/offline_play.png');
+                return;
+            }
+            if (appInfo.appVer < appInfo.appMinVer) {
+                showMsg('images/pop_up_info/update_app.png', '<div id="appStoreBtn" class="abs appStoreBtn"></div>');
+                return;
+            }
+            if (!userInfo.userId) {
+                Magazine.callApp("login:");
+                return;
+            }
             if (isEnd == 1) {
                 showMsg("images/pop_up_info/out_date.png");
                 return false;
@@ -69,6 +82,26 @@ var game = {
                 if (data.code == 1) {
                     isEnd = data.isEnd;
                     todayCoins = todayCoins;
+                }
+            }
+        })
+        $.ajax({
+            type: "GET",
+            url: apiUrl + "submit.jsp",
+            data: {
+                accountId: userInfo.userId,
+                app: 1,
+                common_session_id: userInfo.sessionId,
+                score: parseInt(game.score)
+            },
+            dataType: "jsonp",
+            success: function(data) {
+                if (data.code == 1) {
+                    canGet = data.canGet;
+                    if (data.canGet == 0) {
+                        $(".shareBtn").css("background-image", "url(images/game_scene/button_share2.png)")
+                    }
+
                 }
             }
         })
@@ -201,10 +234,11 @@ var game = {
             hero.hide();
             $('.gameEnd').show();
             // //游戏得分
-            var score =me.score= ((1 - offset / centerPointY) * 100).toFixed(2);
+            var score = ((1 - offset / centerPointY) * 100).toFixed(2);
             var scoreText = $('.scoreNum').find('span').eq(0);
             var gameEndTxt = $(".gameEnd>.txt");
             if (score < 0) score = 0;
+            me.score = score;
             $('.scoreNum').find('span').eq(1).text(score);
             //处理成绩对应的文案
             if (score > 95) {
@@ -221,7 +255,7 @@ var game = {
             //处理成绩对应的获得的幸福币数量
             if (score > 98) {
                 coins = 20;
-            } else if (score > 84) {
+            } else if (score > 88) {
                 coins = 12;
             } else if (score > 78) {
                 coins = 7;
@@ -231,7 +265,7 @@ var game = {
                 coins = 0;
                 $(".win-coins").hide();
             }
-            if (coins != 0) $(".win-coins").show();
+            if (coins != 0 && canGet != 0) $(".win-coins").show();
             $(".win-coins").find("span").text(coins);
             switch (ranNum) {
                 case 1:
@@ -281,7 +315,7 @@ var game = {
     },
     share: function() {
         var me = this;
-        var shareTitle = "你还记得儿时汽车梦吗？看我眼明手获得" + me.score + "分！";
+        var shareTitle = "你还记得儿时汽车梦吗？看我眼明手快获得" + me.score + "分！";
         var iconurl = "html-2545812/images/share.jpg";
         var link = "http://www1.pcauto.com.cn/zt/pcyidong/201408/pcauto/index.html";
         window.location.href = "appshare://?title=" + shareTitle + "&icon=" + iconurl + "&url=" + link + "&sinatail=@PCatuo汽车杂志&qqtail=@PCatuo汽车杂志";

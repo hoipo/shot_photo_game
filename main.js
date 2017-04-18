@@ -1,6 +1,7 @@
 var apiUrl = "http://play10.pcauto.com.cn/auto170401/action/",
     isEnd = 0,
-    todayCoins = 0;
+    todayCoins = 0,
+    canGet = 0;
 var vipRule = [{
     rank: [0, 99],
     icon: "6",
@@ -62,8 +63,8 @@ $(document).ready(function() {
             Magazine.trigger(1);
         }, 1000);
     }
-            
-            
+
+
     Magazine.addEvent(1, function() {
         $(".tree").addClass('show');
         setTimeout(function() {
@@ -76,6 +77,31 @@ $(document).ready(function() {
             }, 400);
         }, 300);
     });
+    Magazine.addEvent(6, function(data) {
+        console.log(data)
+        if (data.isSuccess == "1") {
+            $.ajax({
+                type: "GET",
+                url: apiUrl + "addCoins.jsp",
+                data: {
+                    accountId: userInfo.userId,
+                    app: 1,
+                    common_session_id: userInfo.sessionId,
+                    id: game.id
+                },
+                dataType: "jsonp",
+                success: function(data) {
+                    if (data.code == 1) {
+                        showMsg('images/pop_up_info/get_coins_done.png', '<div id="get-coins-done-close" class="abs get-coins-done-close"></div>');
+                        $("#get-coins-done-close").one("touchstart", function() {
+                            window.location.reload(1);
+                        })
+                    }
+                }
+            })
+        }
+
+    })
     game.init();
 });
 //事件绑定
@@ -89,7 +115,6 @@ $("#close").tap(function(e) {
 });
 $(".shareBtn").tap(function(e) {
     e.stopPropagation();
-    //提交分数
     $.ajax({
         type: "GET",
         url: apiUrl + "submit.jsp",
@@ -102,26 +127,12 @@ $(".shareBtn").tap(function(e) {
         dataType: "jsonp",
         success: function(data) {
             if (data.code == 1) {
-                console.log('提交分数成功');
-                //提交分数
-            $.ajax({
-                type: "GET",
-                url: apiUrl + "addCoins.jsp",
-                data: {
-                    accountId: userInfo.userId,
-                    app: 1,
-                    common_session_id: userInfo.sessionId,
-                    id: data.id
-                },
-                dataType: "jsonp",
-                success: function(data) {
-                    if (data.code == 1) {
-                        setTimeout(function () {
-                            showMsg('images/pop_up_info/get_coins_done.png', '<div id="get-coins-done-close" class="abs get-coins-done-close"></div>');
-                        }, 8000)
-                    }
+                console.log(data);
+                game.id = data.id;
+                if (data.canGet == 0) {
+                    $(".shareBtn").css("background-image", "url(images/game_scene/button_share2.png)")
                 }
-            })
+
             }
         }
     })
@@ -182,8 +193,8 @@ function showMsg(url) {
 }
 
 function rank() {
-    appInfo.appVer = 3;
-    appInfo.appMinVer = 2;
+    // appInfo.appVer = 3;
+    // appInfo.appMinVer = 2;
     if (!navigator.onLine) {
         showMsg('images/pop_up_info/offline_rank.png');
     } else if (appInfo.appVer < appInfo.appMinVer) {
