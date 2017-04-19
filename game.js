@@ -35,12 +35,25 @@ var game = {
         } else {
             var checkbox = me.gameWrapDom.find('.checkbox');
             var btnIKnew = me.gameWrapDom.find('.i-knew-it');
-            checkbox.tap(function() {
+            checkbox.tap(function(e) {
+                e.stopPropagation();
                 checkbox.toggleClass('checked');
             });
         }
-        $('.i-knew-it,#btn-start').tap(function(e) {
+        $('.i-knew-it').tap(function(e) {
             e.stopPropagation();
+            if (me.gameWrapDom.find('.checkbox').hasClass("checked")) {
+                me.hiedTips = true;
+                window.localStorage.setItem("gameTips201705", "1");
+            }
+            me.gameWrapDom.find(".how-to-play").addClass('hide');
+            me.gameWrapDom.find(".count-down").one("webkitAnimationEnd animationEnd", function() {
+                me.heroRun();
+            }).addClass('show');
+        });
+        $('#btn-start').tap(function(e) {
+            e.stopPropagation();
+            addCount('adclick:AC*2017-05*start按钮');
             //提交分数
             if (!navigator.onLine) {
                 showMsg('images/pop_up_info/offline_play.png');
@@ -59,14 +72,11 @@ var game = {
                 return false;
             }
             $(".game-wrap").addClass('show');
-            if (me.gameWrapDom.find('.checkbox').hasClass("checked")) {
-                me.hiedTips = true;
-                window.localStorage.setItem("gameTips201705", "1");
+            if (me.hideTips) {
+                me.gameWrapDom.find(".count-down").one("webkitAnimationEnd animationEnd", function() {
+                    me.heroRun();
+                }).addClass('show');
             }
-            me.gameWrapDom.find(".how-to-play").addClass('hide');
-            me.gameWrapDom.find(".count-down").one("webkitAnimationEnd animationEnd", function() {
-                me.heroRun();
-            }).addClass('show');
         });
         //获取用户信息
         $.ajax({
@@ -263,9 +273,16 @@ var game = {
                 coins = 2;
             } else {
                 coins = 0;
-                $(".win-coins").hide();
             }
-            if (coins != 0 && canGet != 0) $(".win-coins").show();
+            if (coins != 0 && canGet != 0) {
+                $(".win-coins").show();
+                $(".shareBtn").css("background-image", "url(images/game_scene/button_share.png)")
+            }else{
+                 $(".shareBtn").css("background-image", "url(images/game_scene/button_share2.png)");
+                 $(".win-coins").hide();
+            }
+            if (score != 0) $(".shareBtn").show();
+                else $(".shareBtn").hide();
             $(".win-coins").find("span").text(coins);
             switch (ranNum) {
                 case 1:
@@ -295,21 +312,21 @@ var game = {
                 default:
                     break;
             }
-
-            /**
-             * 再来一次
-             */
-            //添加事件绑定
-            $(".againBtn").one("touchstart", function(e) {
+        }
+        /**
+         * 再来一次
+         */
+        //添加事件绑定
+        $(".againBtn").one("touchstart", function(e) {
                 e.stopPropagation();
                 com.setCss3($screenshot.find('li'));
                 $screenshot.removeClass('show');
                 me.heroRun();
             })
-        }
-        //拍照
+            //拍照
         $('.takePhotoBtn').one("touchstart", function(e) {
             e.stopPropagation();
+            addCount('adclick:AC*2017-05*拍照按钮');
             gameEnd();
         })
     },

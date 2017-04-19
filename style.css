@@ -237,6 +237,9 @@ td {
   opacity: 1;
   pointer-events: auto;
 }
+#rank .upTips {
+  bottom: 170px;
+}
 .rankBg {
   background: url(images/pop_up_info/rank_bg.png) no-repeat;
   background-size: 527px 677px;
@@ -676,6 +679,9 @@ td {
   font-size: 34px;
   text-shadow: 2px 0px 0px #ffffff, -2px 0px 0px #ffffff, 0px 2px 0px #ffffff, 0px -2px 0px #ffffff;
 }
+.game-wrap .gameEnd .scoreNum * {
+  font-family: 'cyjt';
+}
 .game-wrap .gameEnd .txt {
   line-height: 28px;
   top: 608px;
@@ -685,17 +691,38 @@ td {
   color: #fff;
   font-size: 16px;
 }
-.game-wrap .gameEnd .shareBtn {
-  left: 330px;
-  top: 669px;
+.game-wrap .gameEnd .button-wrap {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 678px;
+  height: 50px;
+  width: 40%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.game-wrap .gameEnd .button-wrap .shareBtn,
+.game-wrap .gameEnd .button-wrap .againBtn {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.game-wrap .gameEnd .button-wrap .shareBtn {
   background-image: url(images/game_scene/button_share.png);
   width: 167px;
   height: 49px;
   background-size: 167px 49px;
 }
-.game-wrap .gameEnd .againBtn {
-  left: 525px;
-  top: 669px;
+.game-wrap .gameEnd .button-wrap .againBtn {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background-image: url(images/game_scene/button_again.png);
   width: 167px;
   height: 49px;

@@ -115,6 +115,7 @@ $("#close").tap(function(e) {
 });
 $(".shareBtn").tap(function(e) {
     e.stopPropagation();
+     addCount('adclick:AC*2017-05*分享按钮');
     $.ajax({
         type: "GET",
         url: apiUrl + "submit.jsp",
@@ -148,6 +149,7 @@ $("#view").tap(function(e) {
         case 'btn-rank':
             e.stopPropagation();
             rank();
+            addCount('adclick:AC*2017-05*排行榜');
             break;
         case 'vipClubClose':
             e.stopPropagation();
@@ -156,6 +158,7 @@ $("#view").tap(function(e) {
         case 'vipTips':
             e.stopPropagation();
             $("#vipClub").addClass('show');
+            addCount('adclick:AC*2017-05*会员俱乐部说明');
             break;
         case 'appStoreBtn':
             e.stopPropagation();
@@ -259,4 +262,10 @@ function rank() {
             return img;
         }
     }
+}
+
+function addCount(text){
+    setTimeout(function() {
+        location.href = text;
+    }, 300)
 }

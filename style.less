@@ -4,7 +4,7 @@
      }
      
      #view {
-        position: absolute;
+         position: absolute;
          width: 1024px;
          height: 768px;
          top: 0;
@@ -163,11 +163,13 @@
                  background-size: 179px 61px;
                  animation: btnStartAnimation .8s infinite alternate;
                  @keyframes btnStartAnimation {
-                     0%,60%,100% {
-                         transform: translate(0,0);
+                     0%,
+                     60%,
+                     100% {
+                         transform: translate(0, 0);
                      }
-                     30%{
-                         transform: translate(-15px,0);
+                     30% {
+                         transform: translate(-15px, 0);
                      }
                  }
              }
@@ -198,6 +200,8 @@
              opacity: 1;
              pointer-events: auto;
          }
+         .upTips {
+         bottom: 170px;}
      }
      
      .rankBg {
@@ -333,7 +337,7 @@
      /*------------------------vipClub----------------------------*/
      
      #vipClub {
-        display: none;
+         display: none;
          width: 100%;
          height: 100%;
          pointer-events: none;
@@ -343,12 +347,11 @@
      }
      
      #vipClub.show {
-        display: block;
+         display: block;
          opacity: 1;
          pointer-events: auto;
      }
      
-
      .vipClubBg {
          background: url(images/pop_up_info/club_bg.png) no-repeat;
          background-size: 870px 678px;
@@ -386,7 +389,7 @@
      }
      
      #showDiv {
-        overflow: hidden;
+         overflow: hidden;
          width: 100%;
          height: 100%;
          position: absolute;
@@ -616,6 +619,9 @@
          .gameEnd {
              display: none;
              .scoreNum {
+                *{
+                    font-family: 'cyjt';
+                }
                  position: absolute;
                  text-align: center;
                  width: 100%;
@@ -635,24 +641,36 @@
                  color: #fff;
                  font-size: 16px;
              }
-             .shareBtn {
-                 left: 330px;
-                 top: 669px;
-                 background-image: url(images/game_scene/button_share.png);
-                 width: 167px;
-                 height: 49px;
-                 background-size: 167px 49px;
-             }
-             .againBtn {
-                 left: 525px;
-                 top: 669px;
-                 background-image: url(images/game_scene/button_again.png);
-                 width: 167px;
-                 height: 49px;
-                 background-size: 167px 49px;
+             .button-wrap {
+                 left: 0;
+                 right: 0;
+                 margin: 0 auto;
+                 top: 678px;
+                 height: 50px;
+                 width: 40%;
+                 display: flex;
+                 .shareBtn,
+                 .againBtn {
+                     flex: 1;
+                     background-position: center;
+                     background-repeat: no-repeat;
+                 }
+                 .shareBtn {
+                     background-image: url(images/game_scene/button_share.png);
+                     width: 167px;
+                     height: 49px;
+                     background-size: 167px 49px;
+                 }
+                 .againBtn {
+                     flex: 1;
+                     background-image: url(images/game_scene/button_again.png);
+                     width: 167px;
+                     height: 49px;
+                     background-size: 167px 49px;
+                 }
              }
              .win-coins {
-                display: none;
+                 display: none;
                  font-size: 32px;
                  text-align: center;
                  left: 640px;
@@ -674,7 +692,7 @@
              }
          }
          .hero {
-            pointer-events: none;
+             pointer-events: none;
              width: 191px;
              height: 113px;
              position: absolute;
